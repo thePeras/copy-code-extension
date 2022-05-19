@@ -1,0 +1,19 @@
+{
+
+    "manifest_version": 2,
+    "name": "Copy-Code",
+    "version": "1.0",
+  
+    "description": "Adds a copy button to all code tags.",
+  
+    "icons": {
+      "48": "icons/border-48.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["https://*/*"],
+        "js": ["code.js"]
+      }
+    ]
+}  
