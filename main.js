@@ -1,45 +1,4 @@
-
-const styles = `
-    background: url(https://developer.mozilla.org/static/media/clippy.92fffda9d37d9c3a3b37.svg);
-    background-size: auto;
-    height: 20px;
-    width: 17px;
-    cursor: pointer;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    background-size: 20px;
-    opacity: 0.7;
-`
-let str = `
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    opacity: 0;
-    transform: translateX(-100%);
-    
-    background: rgba(255, 255, 255, 0.13);
-    background: linear-gradient(
-        to right, 
-        rgba(255, 255, 255, 0.13) 0%,
-        rgba(255, 255, 255, 0.13) 77%,
-        rgba(255, 255, 255, 0.5) 92%,
-        rgba(255, 255, 255, 0.3) 100%
-    );
-`
-let str2 = `
-    opacity: 1;
-    top: 0;
-    left: 0;
-    transform: translateX(0);
-    transition-property: transform, opacity;
-    transition-duration: 0.7s, 0.15s;
-    transition-timing-function: ease;
-`
-
+//Defining styles
 const buttonStyle = `
     display:flex;
     position: absolute;
@@ -67,92 +26,84 @@ const buttonHoverStyle = `
     cursor: pointer;
     background: #cce0f0;
 `
+const effectStart = `
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(-100%);
 
-const css = `
-    .copy-button:{${buttonStyle}};
-    .copy-button:hover{${buttonHoverStyle}};
-    button:focus{
-        outline: 0;
-    }
-    p{color: red};
-    pre::after{${str}};
-    pre::hover::after{${str2}};
+    background: rgba(255, 255, 255, 0.20);
+    background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0.20) 0%,
+    rgba(255, 255, 255, 0.20) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0.3) 100%
+    );
+`
+const effectEnd = `
+    opacity: 1;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    transition-property: transform, opacity;
+    transition-duration: 0.7s, 0.15s;
+    transition-timing-function: ease;
 `
 
-//Append styles
+//Appending styles
+const style = document.createElement('style');
+style.innerHTML = `
+    .copy-button{
+        ${buttonStyle}
+    }
+    .copy-button:hover{
+        ${buttonHoverStyle}
+    }
+    .effect-initial:after {
+        ${effectStart}
+    }
+    .effect-end:after {
+        ${effectEnd}
+    }
+`;
+document.head.appendChild(style);
 
-const styless = document.createElement('style');
-styless.innerHTML = `
-      .copy-button{
-          ${buttonStyle}
-      }
-      .copy-button:hover{
-          ${buttonHoverStyle}
-      }
-      .effect-initial:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 200%;
-        height: 100%;
-        opacity: 0;
-        transform: translateX(-100%);
-        
-        background: rgba(255, 255, 255, 0.20);
-        background: linear-gradient(
-          to right, 
-          rgba(255, 255, 255, 0.20) 0%,
-          rgba(255, 255, 255, 0.20) 77%,
-          rgba(255, 255, 255, 0.5) 92%,
-          rgba(255, 255, 255, 0.3) 100%
-        );
-      }
-      .effect-end:after {
-        opacity: 1;
-        top: 0;
-        left: 0;
-        transform: translateX(0);
-        transition-property: transform, opacity;
-        transition-duration: 0.7s, 0.15s;
-        transition-timing-function: ease;
-      }
-    `;
-document.head.appendChild(styless);
+//Adding the copy buttons
+document.querySelectorAll("pre").forEach( pre => {
+    //VALUE
+    pre.style.position = "relative";
+    let text = pre.innerText;
 
-document.querySelectorAll("pre").forEach(element => {
+    //ICON
     const img = document.createElement("img");
     img.src = "https://img.icons8.com/external-aficons-studio-flat-aficons-studio/344/external-copy-user-interface-aficons-studio-flat-aficons-studio.png";
-    img.style = "height: 80%; margin: auto"
+    img.style = "height: 80%; margin: auto";
 
-    element.style.position = "relative";
+    //BUTTON
+    let copyButton = document.createElement("div");
+    copyButton.className = "copy-button";
+    copyButton.type = "button";
+    copyButton.appendChild(img);
+    pre.classList.add("effect-initial")
 
-    let text = element.innerText;
-
-    let newIcon = document.createElement("div");
-    newIcon.className = "copy-button";
-    newIcon.type = "button";
-    newIcon.appendChild(img);
-    element.classList.add("effect-initial")
-    //copy to clickboard
-    newIcon.onclick = () => {
-        element.classList.add("effect-end")
+    //COPY FUNCTION
+    copyButton.onclick = () => {
+        //effect
+        pre.classList.add("effect-end")
         setTimeout(() => {
-            element.classList.remove("effect-end")
+            pre.classList.remove("effect-end")
         }, 200)
+
+        //coping to clipboard
         if (navigator && navigator.clipboard && navigator.clipboard.writeText)
         return navigator.clipboard.writeText(text);
         return Promise.reject('The Clipboard API is not available.');
     }
 
-    element.append(newIcon)
+    pre.append(copyButton)
 })
-/*
-
-<button type="button" class="icon copy-icon">
-    <span class="visually-hidden">
-        Copy to Clipboard
-    </span><
-/button>
-
-*/
