@@ -4,10 +4,10 @@
     "name": "Copy-Code",
     "version": "1.0",
   
-    "description": "Adds a copy button to all code tags.",
+    "description": "Adds a copy button to all code (<pre>) htmls tags.",
   
     "icons": {
-      "48": "icons/border-48.png"
+      "48": "icons/copy-48.png"
     },
   
     "content_scripts": [

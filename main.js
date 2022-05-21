@@ -41,12 +41,14 @@ let str2 = `
 `
 
 const buttonStyle = `
+    display:flex;
     position: absolute;
     right: 0px;
     top: 0px;
 
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+    max-height: 100%;
 
     background: #E0E5EC;
     border: none;
@@ -61,14 +63,17 @@ const buttonStyle = `
     cursor: pointer;
 `
 const buttonHoverStyle = `
-    background: linear-gradient(65deg, #5E52F6 0, #8B82F9 100%);
-    box-shadow: 0 8px 16px rgba(94, 82, 246, .25);
+    opacity: 0.85;
     cursor: pointer;
+    background: #cce0f0;
 `
 
 const css = `
     .copy-button:{${buttonStyle}};
     .copy-button:hover{${buttonHoverStyle}};
+    button:focus{
+        outline: 0;
+    }
     p{color: red};
     pre::after{${str}};
     pre::hover::after{${str2}};
@@ -116,15 +121,19 @@ styless.innerHTML = `
 document.head.appendChild(styless);
 
 document.querySelectorAll("pre").forEach(element => {
+    const img = document.createElement("img");
+    img.src = "https://img.icons8.com/external-aficons-studio-flat-aficons-studio/344/external-copy-user-interface-aficons-studio-flat-aficons-studio.png";
+    img.style = "height: 80%; margin: auto"
+
     element.style.position = "relative";
-    element.classList.add("effect-initial")
 
     let text = element.innerText;
 
-    let newIcon = document.createElement("button");
+    let newIcon = document.createElement("div");
     newIcon.className = "copy-button";
     newIcon.type = "button";
-
+    newIcon.appendChild(img);
+    element.classList.add("effect-initial")
     //copy to clickboard
     newIcon.onclick = () => {
         element.classList.add("effect-end")
