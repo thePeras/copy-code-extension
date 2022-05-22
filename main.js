@@ -82,7 +82,7 @@ document.querySelectorAll("pre").forEach( pre => {
     //ICON
     const img = document.createElement("img");
     img.src = "https://img.icons8.com/external-aficons-studio-flat-aficons-studio/344/external-copy-user-interface-aficons-studio-flat-aficons-studio.png";
-    img.style = "height: 80%; margin: auto";
+    img.style = "height: 80%; margin: auto; border:none";
 
     //BUTTON
     let copyButton = document.createElement("div");
@@ -107,3 +107,10 @@ document.querySelectorAll("pre").forEach( pre => {
 
     pre.append(copyButton)
 })
+
+
+//Removing all copy buttons of w3resource
+if(window.location.hostname == "www.w3resource.com" || 
+   window.location.hostname == "w3resource.com"){
+    document.querySelectorAll(".toolbar").forEach(el => el.style.display = "none")
+}

@@ -14,7 +14,11 @@
       {
         "matches": [
           "https://stackoverflow.com/*",
-          "https://moodle.up.pt/*"
+
+          "https://moodle.up.pt/*",
+
+          "https://www.w3resource.com/*",
+          "https://w3resource.com/*"
         ],
         "js": ["main.js"]
       }
