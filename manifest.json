@@ -2,7 +2,7 @@
 
     "manifest_version": 2,
     "name": "Copy-Code",
-    "version": "1.0",
+    "version": "1.1",
   
     "description": "Creates a copy to clipboard button on every code text.",
   
