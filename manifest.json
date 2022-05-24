@@ -4,7 +4,7 @@
     "name": "Copy-Code",
     "version": "1.0",
   
-    "description": "Adds a copy button to all code (<pre>) htmls tags.",
+    "description": "Creates a copy to clipboard button on every code text.",
   
     "icons": {
       "48": "icons/copy-48.png"
