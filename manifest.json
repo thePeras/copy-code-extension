@@ -18,7 +18,9 @@
           "https://moodle.up.pt/*",
 
           "https://www.w3resource.com/*",
-          "https://w3resource.com/*"
+          "https://w3resource.com/*",
+
+          "https://villate.org/*"
         ],
         "js": ["main.js"]
       }
