@@ -2,7 +2,7 @@
 
     "manifest_version": 3,
     "name": "Copy-Code",
-    "version": "1.1",
+    "version": "1.2",
   
     "description": "Creates a copy to clipboard button on every code text.",
   
@@ -14,13 +14,22 @@
       {
         "matches": [
           "https://stackoverflow.com/*",
+          "https://*.stackexchange.com/*",
+          "https://serverfault.com/*",
+          "https://superuser.com/*",
+          "https://askubuntu.com/*",
 
           "https://moodle.up.pt/*",
 
           "https://www.w3resource.com/*",
           "https://w3resource.com/*",
 
-          "https://villate.org/*"
+          "https://villate.org/*",
+
+          "https://*.medium.com/*",
+          "https://www.npmjs.com/*",
+
+          "https://forums.raspberrypi.com/*"
         ],
         "js": ["main.js"]
       }

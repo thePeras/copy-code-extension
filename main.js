@@ -20,6 +20,9 @@ const buttonStyle = `
     overflow: hidden;
     text-transform: uppercase;
     cursor: pointer;
+
+    opacity: 0;
+    transition: opacity 0.2s linear;
 `
 const buttonHoverStyle = `
     opacity: 0.85;
@@ -105,6 +108,10 @@ document.querySelectorAll("pre").forEach( pre => {
         return Promise.reject('The Clipboard API is not available.');
     }
 
+    //OPACITY EVENTS
+    pre.onmouseover = () => copyButton.style.opacity = 1;
+    pre.onmouseout = () => copyButton.style.opacity = 0;
+
     pre.append(copyButton)
 })
 
@@ -114,6 +121,9 @@ if(window.location.hostname == "www.w3resource.com" ||
    window.location.hostname == "w3resource.com"){
     document.querySelectorAll(".toolbar").forEach(el => el.style.display = "none")
 }
+
+//Removing all "Select All" from forums.raspberrypi
+document.querySelectorAll('.codebox').forEach(div => div.children[0].style.display = "none")
 
 //villate.org
 const splitArray = (myArray, tag = "BR") => {
@@ -155,6 +165,7 @@ document.querySelectorAll('.maxima').forEach(div => {
         let copyButton = document.createElement("div");
         copyButton.className = "copy-button";
         copyButton.type = "button";
+        copyButton.style.opacity = 1;
         copyButton.appendChild(img);
 
         //COPY FUNCTION
