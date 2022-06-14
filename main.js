@@ -76,31 +76,22 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-//Adding the copy buttons
-document.querySelectorAll("pre").forEach( pre => {
-    //VALUE
-    pre.style.position = "relative";
-    let text = pre.innerText;
-
-    //ICON
+CreateCopyButton = (text, aditionalFunction = () => {}, villate = false) => {
+    //icon
     const img = document.createElement("img");
     img.src = "https://img.icons8.com/external-aficons-studio-flat-aficons-studio/344/external-copy-user-interface-aficons-studio-flat-aficons-studio.png";
     img.style = "height: 80%; margin: auto; border:none";
 
-    //BUTTON
+    //button
     let copyButton = document.createElement("div");
     copyButton.className = "copy-button";
     copyButton.type = "button";
     copyButton.appendChild(img);
-    pre.classList.add("effect-initial")
 
-    //COPY FUNCTION
+    //onclick function
     copyButton.onclick = () => {
-        //effect
-        pre.classList.add("effect-end")
-        setTimeout(() => {
-            pre.classList.remove("effect-end")
-        }, 200)
+        //effect function
+        aditionalFunction();
 
         //coping to clipboard
         if (navigator && navigator.clipboard && navigator.clipboard.writeText)
@@ -108,22 +99,45 @@ document.querySelectorAll("pre").forEach( pre => {
         return Promise.reject('The Clipboard API is not available.');
     }
 
+    if(!villate) return copyButton;
+
+    //villate aditionals
+    console.log(123);
+    copyButton.style.opacity = 1;
+    copyButton.style.position = "relative";
+    copyButton.style.float = "right";
+    copyButton.style.width = "23px";
+    copyButton.style.height = "23px";
+
+    return copyButton;
+}
+
+//Adding the copy buttons
+document.querySelectorAll("pre").forEach( pre => {
+    //VALUE
+    let text = pre.innerText;
+
+    //PRE TAG
+    pre.style.position = "relative";
+    pre.classList.add("effect-initial")
+
+    //effect
+    const fadeEffect = () => {
+        pre.classList.add("effect-end")
+        setTimeout(() => {
+            pre.classList.remove("effect-end")
+        }, 200)
+    }
+
+    //COPY FUNCTION
+    let copyButton = CreateCopyButton(text, fadeEffect);
+
     //OPACITY EVENTS
     pre.onmouseover = () => copyButton.style.opacity = 1;
     pre.onmouseout = () => copyButton.style.opacity = 0;
 
     pre.append(copyButton)
 })
-
-
-//Removing all copy buttons of w3resource
-if(window.location.hostname == "www.w3resource.com" || 
-   window.location.hostname == "w3resource.com"){
-    document.querySelectorAll(".toolbar").forEach(el => el.style.display = "none")
-}
-
-//Removing all "Select All" from forums.raspberrypi
-document.querySelectorAll('.codebox').forEach(div => div.children[0].style.display = "none")
 
 //villate.org
 const splitArray = (myArray, tag = "BR") => {
@@ -153,34 +167,23 @@ const editArray = (myArray) => {
 
 document.querySelectorAll('.maxima').forEach(div => {
     const lines = editArray( splitArray([...div.children], "BR") );
+
     for(let line of lines){
-        console.log(line.text)
-
-        //ICON
-        const img = document.createElement("img");
-        img.src = "https://img.icons8.com/external-aficons-studio-flat-aficons-studio/344/external-copy-user-interface-aficons-studio-flat-aficons-studio.png";
-        img.style = "height: 80%; margin: auto; border:none";
-
         //BUTTON
-        let copyButton = document.createElement("div");
-        copyButton.className = "copy-button";
-        copyButton.type = "button";
-        copyButton.style.opacity = 1;
-        copyButton.appendChild(img);
-
-        //COPY FUNCTION
-        copyButton.onclick = () => {
-            //coping to clipboard
-            if (navigator && navigator.clipboard && navigator.clipboard.writeText)
-            return navigator.clipboard.writeText(line.text);
-            return Promise.reject('The Clipboard API is not available.');
-        }
-
-        copyButton.style.position = "relative";
-        copyButton.style.float = "right";
-        copyButton.style.width = "23px";
-        copyButton.style.height = "23px";
-
+        let copyButton = CreateCopyButton(line.text, function(){}, true);
         line.last.append(copyButton)
     }
 })
+
+/* Other functions */
+
+//Removing all copy buttons of w3resource
+if(window.location.hostname == "www.w3resource.com" || 
+   window.location.hostname == "w3resource.com"){
+    document.querySelectorAll(".toolbar").forEach(el => el.style.display = "none")
+}
+
+//Removing all "Select All" from forums.raspberrypi
+document.querySelectorAll('.codebox').forEach(div => div.children[0].style.display = "none")
+
+//moodle allow to select TODO:
