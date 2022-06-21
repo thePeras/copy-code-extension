@@ -1,25 +1,24 @@
 <h1 align="center">
-  <img width="150" src="/icons/copy-128.png" />
-  <p>Copy-Code Extension</p>
+  <img width="90" src="/icons/copy-128.png" />
+  <h4>Copy-Code</h4>
+  <p>Extension</p>
 </h1>
 
 <h4  align="center">Avaiable in </h4>
 
-<a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/copy-code/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search">
+<a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/copy-code">
 <div  align="center">
 <img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png"  height="60">
 <p align="center">Firefox</p>
 </div>
 </a>
 
-<a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/copy-code/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search">
+<a target="_blank" href="https://chrome.google.com/webstore/detail/copy-code/heokjaibaafegafgaaodfgjjgjffnenk">
 <div  align="center">
 <img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/1024px-Google_Chrome_icon_%28February_2022%29.svg.png"  height="60">
 <p>Chrome</p>
 </div>
 </a>
-
-</br>
 
 ## About
 
