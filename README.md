@@ -1,7 +1,6 @@
 <h1 align="center">
   <img width="90" src="/icons/copy-128.png" />
-  <h4>Copy-Code</h4>
-  <p>Extension</p>
+  <p>Copy-Code</p>
 </h1>
 
 <h4  align="center">Avaiable in </h4>
@@ -34,7 +33,7 @@ Devs
 - serverfault.com
 - superuser.com
 - askubuntu.com
-- www.w3resource.com
+- w3resource.com
 - medium.com
 - npmjs.com
 - forums.raspberrypi.com
@@ -42,6 +41,8 @@ Devs
 University of Porto Students
 - moodle.up.pt
 - villate.org
+
+<br>
 
 ##### TO DO IDEAS
 - Add a "copied!" popup
