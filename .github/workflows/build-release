@@ -1,0 +1,16 @@
+# This workflow will create two folders with a zip of the extension ready to deploy to Chrome and Firefox.
+
+name: "New release"
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  chrome:
+    name: generate chrome
+    runs-on: ubuntu-latest
+    
+    steps:
+    - run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
+    - run: zip release/testing.zip icons/ main.js manifest.json
