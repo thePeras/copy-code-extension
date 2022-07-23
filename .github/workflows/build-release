@@ -12,5 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
-    - run: zip release/testing.zip icons/ main.js manifest.json
+      - uses: actions/checkout@v3
+      - run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
+      - run: zip release/testing.zip icons/ main.js manifest.json
