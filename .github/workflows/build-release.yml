@@ -29,3 +29,9 @@ jobs:
         run: git fetch origin master
       - name: push code to master
         run: git push origin HEAD:main
+      
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
