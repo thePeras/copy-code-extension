@@ -13,6 +13,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
+      - name: use Node.js
+        uses: actions/setup-node@v1
       - name: Manifest Version
         run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
       - name: Zip folder
