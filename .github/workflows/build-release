@@ -13,5 +13,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-      - run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
-      - run: zip release/testing.zip icons/ main.js manifest.json
+      - name: Manifest Version
+        run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
+      - name: Zip folder
+        run: zip release/testing.zip icons/ main.js manifest.json
