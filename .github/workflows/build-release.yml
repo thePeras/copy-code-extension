@@ -18,16 +18,18 @@ jobs:
          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Chrome build
+        run: echo Chrome
       - name: Manifest Version to 3
         run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
       - name: Zip folder
         run: zip release/testing.zip icons/ main.js manifest.json
 
       - name: Firefox build
+        run: echo Firefox
       - name: Manifest Version to 2
         run: sed -i '2s/.*/    "manifest_version":2,/' manifest.json
       - name: Zip folder
-        run: zip release/testing.zip icons/ main.js manifest.json
+        run: zip release/testing-2.zip icons/ main.js manifest.json
         
       - name: Update changes
         run: |
