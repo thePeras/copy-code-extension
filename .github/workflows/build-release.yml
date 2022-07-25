@@ -21,8 +21,7 @@ jobs:
       - name: Zip folder
         run: zip release/testing.zip icons/ main.js manifest.json
         
-      - name: Modifiy the specific files using action
-        uses: action-owner/action-repo@ref
+
 
       - name: Commit and push changes
         run: |
