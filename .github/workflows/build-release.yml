@@ -4,11 +4,12 @@ name: "New release"
 
 on:
   push:
-    branches: [ "main" ]
+    tags:
+      - 'v*'
 
 jobs:
   build:
-    name: build-realse
+    name: build-release
     runs-on: ubuntu-latest
     
     steps:
@@ -36,5 +37,5 @@ jobs:
           git config --global user.email "jtopereira@gmail.com"
 
           git add -A
-          git commit -m "commit message "
+          git commit -m ":building_construction: Extension built"
           git push
