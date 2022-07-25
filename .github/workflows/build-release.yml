@@ -22,7 +22,17 @@ jobs:
         run: zip release/testing.zip icons/ main.js manifest.json
         
 
+  firefox:
+    needs: [chrome]
+    name: generate firefox
+    runs-on: ubuntu-latest
 
+    steps:
+      - uses: actions/checkout@v3
+        with:
+         repository: ${{ github.event.pull_request.head.repo.full_name }}
+         ref: ${{ github.event.pull_request.head.ref }}
+        
       - name: Commit and push changes
         run: |
           git config --global user.name "thePeras"
