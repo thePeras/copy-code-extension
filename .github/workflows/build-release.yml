@@ -17,19 +17,18 @@ jobs:
          repository: ${{ github.event.pull_request.head.repo.full_name }}
          ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Chrome build
-        run: echo Chrome
-      - name: Manifest Version to 3
-        run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
-      - name: Zip folder
-        run: zip release/testing.zip icons/ main.js manifest.json
+      - name: Creating folder
+        run: mkdir release/${{ github.event.head_commit.message }}
 
-      - name: Firefox build
-        run: echo Firefox
-      - name: Manifest Version to 2
+      - name: Manifest version to 3
+        run: sed -i '2s/.*/    "manifest_version":3,/' manifest.json
+      - name: Building Chrome zip folder
+        run: zip release/${{ github.event.head_commit.message }}/copy-code-extension-chrome v${{ github.event.head_commit.message }}.zip icons/ main.js manifest.json
+
+      - name: Manifest version to 2
         run: sed -i '2s/.*/    "manifest_version":2,/' manifest.json
-      - name: Zip folder
-        run: zip release/testing-2.zip icons/ main.js manifest.json
+      - name: Building Firefox zip folder
+        run: zip release/${{ github.event.head_commit.message }}/copy-code-extension-firefox v${{ github.event.head_commit.message }}.zip icons/ main.js manifest.json
         
       - name: Update changes
         run: |
