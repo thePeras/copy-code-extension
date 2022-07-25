@@ -36,5 +36,5 @@ jobs:
           git config --global user.email "jtopereira@gmail.com"
 
           git add -A
-          git commit -m "commit message"
+          git commit -m "commit message "
           git push
