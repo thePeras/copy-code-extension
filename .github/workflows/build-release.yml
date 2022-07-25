@@ -22,7 +22,7 @@ jobs:
         run: zip release/testing.zip icons/ main.js manifest.json
         
       - name: Modifiy the specific files using action
-        uses: thePeras/copy-code-extension@ref
+        uses: action-owner/action-repo@ref
 
       - name: Commit and push changes
         run: |
