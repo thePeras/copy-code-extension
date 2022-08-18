@@ -11,6 +11,8 @@ jobs:
   build:
     name: build-release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - uses: actions/checkout@v3
@@ -31,11 +33,7 @@ jobs:
       - name: Building Firefox zip folder
         run: zip release/${{ github.event.head_commit.message }}/copy-code-extension-firefox v${{ github.event.head_commit.message }}.zip icons/ main.js manifest.json
         
-      - name: Update changes
-        run: |
-          git config --global user.name "thePeras"
-          git config --global user.email "jtopereira@gmail.com"
-
-          git add -A
-          git commit -m ":building_construction: Extension built"
-          git push
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "release/${{ github.event.head_commit.message }}/copy-code-extension-firefox v${{ github.event.head_commit.message }}.zip, release/${{ github.event.head_commit.message }}/copy-code-extension-chrome v${{ github.event.head_commit.message }}.zip"
+          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
