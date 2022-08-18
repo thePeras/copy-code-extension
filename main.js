@@ -186,4 +186,4 @@ if(window.location.hostname == "www.w3resource.com" ||
 //Removing all "Select All" from forums.raspberrypi
 document.querySelectorAll('.codebox').forEach(div => div.children[0].style.display = "none")
 
-//moodle allow to select TODO:
+//moodle allow to select TODO
